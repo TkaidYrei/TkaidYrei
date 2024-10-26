@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delliecia Naviem</title>
+    <style>
+        /* Reset dasar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Gaya Body dengan Background */
+        body {
+            color: #fff;
+            text-align: center;
+            overflow-x: hidden;
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        /* Background video */
+        .background-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            filter: brightness(50%);
+        }
+
+        /* Header */
+        header {
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            font-size: 2px;
+            color: #fff;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            animation: slideIn 2s ease-out;
+        }
+
+        /* Anime style slide-in animation */
+        @keyframes slideIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Galeri Video */
+        .video-gallery {
+            display: flex;
+            flex-direction: column; /* Mengatur galeri dalam kolom */
+            padding: 1px;
+            margin-top: 20px;
+            z-index: 1;
+            position: relative;
+        }
+
+        .video-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px; /* Jarak antar baris video */
+        }
+
+        .video-item {
+            position: relative;
+            width: calc(33.33% - 2px); /* Ukuran video di samping */
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            animation: fadeInUp 0.5s ease-out;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Anime style fade-in animation */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .video {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        /* Custom Controls */
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 10px;
+            background: rgba(0, 0, 0, 0.8);)
+            border-radius: 0 0 8px 8px; /* Hanya sudut bawah yang melengkung */
+        }
+
+        .play-button,
+        .mute-button {
+            background: none;
+            border: none;
+            color: fff;
+            font-size: 10px;
+            cursor: pointer;
+        }
+
+        .progress-container {
+            flex-grow: 1;
+            margin: 0 10px;
+            position: relative;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            cursor: pointer; /* Ubah kursor menjadi pointer */
+        }
+
+        .progress {
+            height: 100%;
+            background: #ff4081; /* Warna progress bar */
+            width: 0;
+            border-radius: 5px;
+            transition: width 0.1s ease;
+        }
+       /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #fceef5;
+            color: #333;
+            line-height: 1.6;
+            background-size: cover;
+            background-position: center;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: #333;
+            padding: 10px 0;
+            display: center;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            border-bottom: 3px solid #ff69b4;
+            border-radius: 0 0 15px 15px;
+        }
+
+        header .logo h1 {
+            font-family: 'Cute Font', cursive;
+            font-size: 2.2rem;
+            margin-left: 20px;
+            color: #ff69b4;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin-right: 20px;
+        }
+
+        nav ul li {
+            margin-left: 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 5px 10px;
+            border-radius: 5px;
+            background-color: #ff69b4;
+            transition: background-color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #ff92a4;
+            color: white;
+        }
+
+        /* Animasi Gulir */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            color: white;
+            padding: 80px 20px;
+            background-image: url('suou1.jpg'); /* Ganti dengan gambar dari galeri */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            border-bottom: 3px solid #ff69b4;
+            border-radius: 0 0 20px 20px;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            font-family: 'Cute Font', cursive;
+            color: ff69b4;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-top: 15px;
+            color: #ffd6e1;
+        }
+
+        /* Anime Keren Section */
+        .anime-keren {
+            padding: 30px 20px;
+            text-align: center;
+            background-color: rgba();
+        }
+
+        .anime-keren h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-family: 'Montserrat', sans-serif;
+            color: ff69b4;
+        }
+
+        .anime-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .anime-item {
+            position: relative;
+            overflow: hidden;
+            background-color: fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px #14fff010;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .anime-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba();
+        }
+
+        .anime-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+        }
+
+        .anime-item h3 {
+            font-family: 'Cute Font', cursive;
+            font-size: 1.5rem;
+            color: ff69b4;
+            margin: 10px;
+        }
+
+        .anime-item p {
+            padding: 0 15px;
+            font-size: 0.9rem;
+            color: 555;
+            margin-bottom: 10px;
+        }
+
+        /* Video Section */
+        .video-section {
+            padding: 40px 20px;
+            text-align: center;
+            background-color: rgba();
+        }
+
+        .video-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-family: 'Segoe Print', cursive;
+            color: #ff69b4;
+        }
+
+        .video-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .video-container {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #ff92a4, fceef5);
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            max-width: 400px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .video-container:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba();
+        }
+
+        video {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+        }
+
+        /* Photo Gallery */
+        .photo-gallery {
+            padding: 40px 20px;
+            text-align: center;
+            background-color: rgba();
+        }
+
+        .photo-gallery h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-family: 'Segoe Print', cursive;
+            color: #ff69b4;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 15px;
+        }
+
+        .gallery img {
+            max-width: 300px;
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 5px solid #ff69b4;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            font-size: 0.9rem;
+            border-top: 5px solid #ff92a4;
+        }
+
+        footer p {
+            font-family: 'Segoe Print', cursive;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background video -->
+    <video autoplay muted loop class="background-video" poster="nino.jpg">
+        <source src="nino1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <header>
+        <h1>Delliecia</h1>
+    </header>
+
+    <div class="video-gallery">
+        <div class="video-row">
+            <!-- Video Item 1 -->
+            <div class="video-item">
+                <a href="https://vm.tiktok.com/ZSjLrap33/">
+                    <video class="video" id="video1" poster="nino.jpg">
+                        <source src="nino1.mp4" type="video/mp4">
+                    </video>
+                </a>
+                <div class="controls">
+                    <button class="play-button" id="playButton1">▶️</button>
+                    <div class="progress-container" id="progressContainer1">
+                        <div class="progress" id="progress1"></div>
+                    </div>
+                    <button class="mute-button" id="muteButton1">🔊</button>
+                </div>
+            </div>
+            <!-- Video Item 2 -->
+            <div class="video-item">
+                <a href="https://vm.tiktok.com/ZSjLr5N2e/">
+                    <video class="video" id="video2" poster="alya02.jpg">
+                        <source src="Alya.mp4" type="video/mp4">
+                    </video>
+                </a>
+                <div class="controls">
+                    <button class="play-button" id="playButton2">▶️</button>
+                    <div class="progress-container" id="progressContainer2">
+                        <div class="progress" id="progress2"></div>
+                    </div>
+                    <button class="mute-button" id="muteButton2">🔊</button>
+                </div>
+            </div>
+            <!-- Video Item 3 -->
+            <div class="video-item">
+                <a href="https://vm.tiktok.com/ZSjLrap33/">
+                    <video class="video" id="video3" poster="nino.jpg">
+                        <source src="nino1.mp4" type="video/mp4">
+                    </video>
+                </a>
+                <div class="controls">
+                    <button class="play-button" id="playButton3">▶️</button>
+                    <div class="progress-container" id="progressContainer3">
+                        <div class="progress" id="progress3"></div>
+                    </div>
+                    <button class="mute-button" id="muteButton3">🔊</button>
+                </div>
+            </div>
+        </div>
+        <div class="video-row">
+            <!-- Video Item 4 -->
+            <div class="video-item">
+                <a href="https://vm.tiktok.com/ZSjLr5N2e/">
+                    <video class="video" id="video4" poster="alya02.jpg">
+                        <source src="Alya.mp4" type="video/mp4">
+                    </video>
+                </a>
+                <div class="controls">
+                    <button class="play-button" id="playButton4">▶️</button>
+                    <div class="progress-container" id="progressContainer4">
+                        <div class="progress" id="progress4"></div>
+                    </div>
+                    <button class="mute-button" id="muteButton4">🔊</button>
+                </div>
+            </div>
+            <!-- Video Item 5 -->
+            <div class="video-item">
+                <a href="https://vm.tiktok.com/ZSjLrap33/">
+                    <video class="video" id="video5" poster="nino.jpg">
+                        <source src="nino1.mp4" type="video/mp4">
+                    </video>
+                </a>
+                <div class="controls">
+                    <button class="play-button" id="playButton5">▶️</button>
+                    <div class="progress-container" id="progressContainer5">
+                        <div class="progress" id="progress5"></div>
+                    </div>
+                    <button class="mute-button" id="muteButton5">🔊</button>
+                </div>
+            </div>
+            <!-- Video Item 6 -->
+            <div class="video-item">
+                <a href="https://vm.tiktok.com/ZSjLr5N2e/">
+                    <video class="video" id="video6" poster="alya02.jpg">
+                        <source src="Alya.mp4" type="video/mp4">
+                    </video>
+                </a>
+                <div class="controls">
+                    <button class="play-button" id="playButton6">▶️</button>
+                    <div class="progress-container" id="progressContainer6">
+                        <div class="progress" id="progress6"></div>
+                    </div>
+                    <button class="mute-button" id="muteButton6">🔊</button>
+                </div>
+            </div>
+        </div>
+    </div>
+        <section id="anime-keren" class="anime-keren fade-in">
+        <h2>Anime Keren</h2>
+        <div class="anime-grid">
+            <div class="anime-item fade-in">
+                <img src="anime1.jpg" alt="Anime 1">
+                <h3>Anime 1</h3>
+                <p>Description of Anime 1</p>
+            </div>
+            <div class="anime-item fade-in">
+                <img src="anime2.jpg" alt="Anime 2">
+                <h3>Anime 2</h3>
+                <p>Description of Anime 2</p>
+            </div>
+            <div class="anime-item fade-in">
+                <img src="anime3.jpg" alt="Anime 3">
+                <h3>Anime 3</h3>
+                <p>Description of Anime 3</p>
+            </div>
+            <!-- Tambahkan lebih banyak item anime sesuai kebutuhan -->
+        </div>
+    </section>
+
+    <section id="gallery" class="photo-gallery fade-in">
+        <h2>Photo Gallery</h2>
+        <div class="gallery">
+            <img src="kurumi.jpg" alt="Photo 1">
+            <img src="kurumi2.jpg" alt="Photo 2">
+            <img src="suou2.jpg" alt="Photo 3">
+            <img src="alya01.jpg" alt="Photo 3">            
+            <!-- Tambahkan lebih banyak gambar sesuai kebutuhan -->
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2024 Tokidoki Bosotto. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const videos = document.querySelectorAll('.video');
+
+        videos.forEach((video, index) => {
+            const playButton = document.getElementById(`playButton${index + 1}`);
+            const muteButton = document.getElementById(`muteButton${index + 1}`);
+            const progressContainer = document.getElementById(`progressContainer${index + 1}`);
+            const progress = document.getElementById(`progress${index + 1}`);
+
+            // Event listener untuk tombol play/pause
+            playButton.addEventListener('click', () => {
+                if (video.paused) {
+                    video.play();
+                    playButton.textContent = '⏸️'; // Ubah menjadi ikon pause
+                } else {
+                    video.pause();
+                    playButton.textContent = '▶️'; // Ubah menjadi ikon play
+                }
+            });
+
+            // Event listener untuk tombol mute/unmute
+            muteButton.addEventListener('click', () => {
+                video.muted = !video.muted;
+                muteButton.textContent = video.muted ? '🔇' : '🔊';
+            });
+
+            // Update progress bar
+            video.addEventListener('timeupdate', () => {
+                const percent = (video.currentTime / video.duration) * 100;
+                progress.style.width = `${percent}%`;
+            });
+
+            // Pengaturan ulang video jika berakhir agar berulang otomatis
+            video.addEventListener('ended', () => {
+                video.currentTime = 0;
+                if (!video.paused) video.play(); // Hanya mengulang jika tidak dipause
+            });
+
+            // Event listener untuk klik pada progress bar
+            progressContainer.addEventListener('click', (e) => {
+                const rect = progressContainer.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const percent = x / progressContainer.clientWidth;
+                video.currentTime = percent * video.duration;
+            });
+        });
+    </script>
+</body>
+</html>
